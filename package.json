@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cross-env VITE_API_URL=https://backend-onlytrack.cameron.bonsigne.dev-campus.fr vite build",
+    "build:dev": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
