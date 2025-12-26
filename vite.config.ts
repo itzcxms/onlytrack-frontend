@@ -15,8 +15,10 @@ export default defineConfig({
     proxy: {
       // Proxy API requests to backend during development
       '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:5000',
+        target: 'https://backend-onlytrack.cameron.bonsigne.dev-campus.fr',
         changeOrigin: true,
+        secure: false,
+        cookieDomainRewrite: 'localhost', // Réécrire le domaine des cookies pour localhost
       },
     },
   },
