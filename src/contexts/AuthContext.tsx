@@ -11,6 +11,9 @@ import {
   ReactNode,
 } from "react";
 
+// API base URL - uses VITE_API_URL in production, empty string in development
+const API_BASE_URL = import.meta.env.VITE_API_URL || "";
+
 // ==========================================
 // TYPES
 // ==========================================
@@ -73,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    */
   async function refreshUser() {
     try {
-      const res = await fetch("/api/auth/moi", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/moi`, {
         credentials: "include",
       });
 
@@ -100,7 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    * @throws {Error} Si les identifiants sont incorrects
    */
   async function login(email: string, password: string) {
-    const res = await fetch("/api/auth/connexion", {
+    const res = await fetch(`${API_BASE_URL}/api/auth/connexion`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -121,7 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    * Supprime le cookie JWT et réinitialise l'état
    */
   async function logout() {
-    await fetch("/api/auth/deconnexion", {
+    await fetch(`${API_BASE_URL}/api/auth/deconnexion`, {
       method: "POST",
       credentials: "include",
     });
